@@ -1,4 +1,4 @@
-﻿# AWS assessment deployment
+# AWS assessment deployment
 
 Deployment date: 20 September 2026. This is a single-host assessment environment, not a production service.
 
@@ -41,4 +41,3 @@ Stopping compute interrupts reviewer access and does not stop EBS charges. Do no
 ## Submission
 
 Source: https://github.com/sudharshanreddyragipindi35-collab/migrateflow-fde-assessment (private; grant panel access). The original workspace origin remains unchanged. docs/APPROACH_ONE_PAGE.html was visually verified to fit one A4 page. No video is planned for the hosted-link submission route.
-

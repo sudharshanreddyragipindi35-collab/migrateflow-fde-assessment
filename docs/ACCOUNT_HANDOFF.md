@@ -1,4 +1,4 @@
-﻿# Account handoff â€” 20 September 2026
+# Account handoff â€” 20 September 2026
 
 This file preserves the previous Codex session's implementation history and remaining work. Read the actual workspace before changing anything. Test results below are recorded results from that session, not a claim that checks were rerun when this handoff was written.
 
@@ -108,4 +108,3 @@ Production follow-ups, not assignment blockers: authentication/RBAC/tenant isola
 ## Prompt to paste into the next account
 
 > Continue my Darwinbox FDE migration-agent assessment in `C:\Users\sudha\Desktop\Darwinbox`. Read this handoff and current requirements/validation documents, inspect Git status and workspace instructions, and preserve existing edits. The user selected a hosted-link submission without video and authorized a separate repository named migrateflow-fde-assessment. Finish repository publication when authenticated, add and verify the hosted URL, check the one-page approach layout, and visually verify escalation/resumption. Clarify current versus proposed architecture in HLD/LLD. Do not rebuild from scratch, add unnecessary frameworks, claim unrun tests, expose secrets, or call the separate LangGraph contract the runtime orchestrator.
-
