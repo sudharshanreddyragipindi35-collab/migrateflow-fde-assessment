@@ -10,7 +10,7 @@ This submission uses the **hosted prototype** route. Open the [live MigrateFlow 
 
 - **Working prototype:** hosted application, with the sample-data walkthrough below for reviewers.
 - **Source repository:** backend, frontend, tests, synthetic samples, configuration and setup instructions in this README.
-- **One-page write-up:** [Approach, autonomy boundary and next steps](APPROACH.md), also available in [printable A4 format](docs/APPROACH_ONE_PAGE.html).
+- **One-page write-up:** [Download the submission PDF](output/pdf/MigrateFlow_Approach_One_Page.pdf), with editable [Markdown](APPROACH.md) and [printable HTML](docs/APPROACH_ONE_PAGE.html). The expanded 494-word write-up and both submission URLs fit on one verified A4 PDF page.
 
 ## Features
 

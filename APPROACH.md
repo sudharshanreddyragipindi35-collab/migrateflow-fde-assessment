@@ -1,23 +1,23 @@
-﻿# MigrateFlow: approach and autonomy
+﻿# MigrateFlow: approach, autonomy and next steps
 
-## Approach
+## Approach and implementation
 
-I built MigrateFlow around the implementation consultant's task: turn inconsistent employee exports into a trustworthy migration without approving every field. Multiple CSV/Excel files are profiled against one target schema, mapped, cleaned, reconciled and validated before delivery to a mock API. The React interface exposes progress, exceptions, source provenance and per-record outcomes. My central design decision is that the model proposes meaning; deterministic code controls execution.
+I built MigrateFlow for an implementation consultant migrating inconsistent employee exports into a new platform. Multiple CSV/Excel files are profiled against a shared employee schema, mapped, cleaned, reconciled and validated before delivery to a mock API. React exposes live progress, exceptions, source provenance and per-record results; FastAPI and SQL persistence coordinate execution. Open-source Qwen2.5 through Ollama handles unfamiliar field meanings. My central design decision is that the model proposes semantics while deterministic code owns execution authority.
 
 ## What the agent handles independently
 
-Verified aliases with compatible types bypass inference. Unfamiliar columns receive structured proposals from the open-source Qwen2.5 model through Ollama, using masked profiling context. A mapping is applied automatically only when its evidence score is at least 0.90, types are compatible and no blocking ambiguity or collision exists. This score is a policy threshold, not a calibrated probability. The agent safely trims whitespace, normalizes known casing, converts unambiguous dates and merges clear duplicates. Batched inference and saved proposals reduce repeated work.
+Verified aliases with compatible types bypass inference. Remaining columns receive structured model proposals using masked profiling context, batched per file; saved proposals are reused on replay. A mapping is applied automatically only when its evidence score is at least 0.90, types are compatible and no blocking ambiguity or collision exists. This threshold is a conservative engineering rule, not a calibrated probability. Safe cleanup trims whitespace, normalizes known casing, converts dates with one interpretation and merges clear duplicates while retaining provenance. Every resulting record must pass validation.
 
-## Where I draw the escalation boundary
+## Why and when I escalate
 
-I escalate decisions that require missing business knowledge: competing field meanings, ambiguous dates, conflicting employee identities, missing required values or validation failures that safe cleanup cannot resolve. For example, `03/04/2024` must not be interpreted without evidence of the date convention. Model recovery or failover also triggers review. Confidence cannot override a collision or validation rule, and approval cannot make an invalid record valid. This boundary avoids both silent data corruption and unnecessary confirmation of routine transformations.
+I draw the boundary where proceeding would require inventing a fact or choosing between plausible business meanings. Competing target fields, conflicting employee identities, ambiguous dates, missing required values and validation failures that safe cleanup cannot resolve require human judgment. For example, 03/04/2024 could mean 3 April or 4 March; confidence alone cannot settle the convention. Mapping collisions and model-recovery fallback also force review. Approval cannot bypass validation, and two source columns cannot silently overwrite one destination field. This avoids both unattended corruption and asking a consultant to confirm every routine transformation.
 
-The review queue shows the relevant context, recommendation and reason, with approve, correct or reject actions. Human decisions persist, and resolving the final exception resumes processing. Selecting Autopilot authorizes delivery of valid records; guided mode keeps a separate send decision.
+The review queue presents source context, a recommendation and the reason for escalation, with approve, correct or reject actions. Decisions persist across repeated processing. Resolving the final exception resumes the workflow. Selecting Autopilot authorizes sending valid records to the mock destination; guided mode retains a separate send decision. Both modes enforce the same safety policy.
 
-## Reliability beyond model output
+## Engineering beyond the model
 
-A persistent SQL workflow and background queue keep execution independent of the browser. The mock API provides per-record results, idempotent delivery, bounded retries and batch-scoped undo. Audit records explain changes and decisions. Regression coverage checks ambiguity, collisions, preserved human corrections, unattended execution and retry/undo behavior. These controls make the agent's actions inspectable and recoverable; the small evaluation suite is not a claim of production accuracy.
+A durable SQL job queue runs work outside browser requests, with bounded workers and renewable leases. Idempotent API writes, per-record outcomes, bounded transient retries, batch-scoped undo and an audit trail make actions inspectable and recoverable. Input limits and masked model context reduce resource and privacy risks. The hosted AWS prototype serves frontend, backend and local Ollama over HTTPS. Verification includes 62 backend tests, 13 frontend tests, a browser escalation/correction/delivery/undo walkthrough and real hosted Ollama inference. The hosted smoke took 123.5 seconds on CPU; this small test is not a general accuracy or throughput guarantee.
 
 ## What I would build next
 
-With a real client, I would first expand evaluation using representative exports and measure incorrect automatic decisions, review workload and completion time. Next I would add destination-specific authentication and rate limits, tenant isolation, encrypted storage and stronger distributed recovery. The priority is increasing safe autonomy with evidence while keeping the consultant's workflow understandable.
+First, I would evaluate representative client exports and measure incorrect automatic decisions, review workload and completion time, then tune policy and inference using that evidence. Next come destination-specific authentication and rate limits, tenant isolation, encrypted storage, versioned migrations and stronger distributed recovery. The objective is demonstrably safer autonomy with less consultant effort, rather than adding unnecessary agent complexity.
