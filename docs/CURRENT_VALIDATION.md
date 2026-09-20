@@ -44,3 +44,16 @@ Completion includes worker dispatch and polling. This is a small sequential resp
 
 See `REQUIREMENTS_AND_VERIFICATION.md` for functional and non-functional coverage and explicit production follow-ups. The earlier submission review is retained as a historical record, not the current verdict.
 
+
+## Hosted AWS verification — 20 September 2026
+
+Live URL: https://demo-migrateflow.51-21-247-103.sslip.io. Frontend, backend and local Ollama run on the separate EC2 assessment instance behind Caddy HTTPS. Root storage was expanded to 30 GiB and its XFS filesystem enlarged.
+
+- HTTPS certificate obtained; frontend, API and model containers healthy.
+- Headless Chrome UI walkthrough passed: synthetic upload, two UI review resolutions including a date correction, automatic delivery of one record, and undo via the UI; zero JavaScript page errors. Screenshot of the review screen visually inspected. See evaluation/aws_ui_report.json.
+- Real Ollama HTTP smoke passed in 123.50 seconds: seven proposals, including configured-provider inference, one validated record, one successful push and one undo. See evaluation/aws_live_model_report.json.
+- Initial 60-second inference requests timed out and fell back. Final hosted configuration uses single-request model concurrency and a bounded 180-second timeout. Do not present desktop 39.70-second results as hosted latency.
+- Initial source GitHub Actions run passed: https://github.com/sudharshanreddyragipindi35-collab/migrateflow-fde-assessment/actions/runs/35506110569. Subsequent documentation/deployment commits may trigger separate checks.
+- Approach A4 HTML visually inspected and fits one page.
+
+These checks supersede the earlier browser-unavailable and remote-CI-not-verified entries for the tested paths only. They do not establish multi-user isolation, load capacity or production security. Use synthetic data in the shared demo. See docs/AWS_DEPLOYMENT_STATUS.md for operations, cost and hostname stability limits.

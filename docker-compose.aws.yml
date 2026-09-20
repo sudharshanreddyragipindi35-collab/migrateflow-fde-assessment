@@ -1,0 +1,97 @@
+name: migrateflow-assessment
+
+# Single-host assessment deployment. Place behind an HTTPS endpoint.
+# Only the edge port is published; database and inference stay private.
+services:
+  https:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      DEMO_HOST: ${DEMO_HOST:?Set DEMO_HOST to the public demo hostname}
+    volumes:
+      - ./deploy/Caddyfile:/etc/caddy/Caddyfile:ro
+      - certificates:/data
+      - caddy-config:/config
+    depends_on:
+      edge:
+        condition: service_started
+  edge:
+    image: nginx:1.27-alpine
+    restart: unless-stopped
+    ports:
+      - "${EDGE_BIND_ADDRESS:-127.0.0.1}:8080:80"
+    volumes:
+      - ./deploy/nginx/aws.conf:/etc/nginx/conf.d/default.conf:ro
+    depends_on:
+      backend:
+        condition: service_healthy
+      frontend:
+        condition: service_started
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        VITE_API_BASE_URL: ""
+    restart: unless-stopped
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    restart: unless-stopped
+    environment:
+      APP_ENV: production
+      DATABASE_URL: sqlite:///./data/migrateflow.db
+      UPLOAD_ROOT: /app/uploads
+      MODEL_MODE: ollama
+      OLLAMA_BASE_URL: http://ollama:11434
+      OLLAMA_MODEL: qwen2.5:7b-instruct
+      LLM_FAILOVER_PROVIDER: fallback
+      LLM_REQUEST_TIMEOUT_SECONDS: "180"
+      LLM_PARALLEL_WORKERS: "1"
+      MAPPING_FAST_PATH: "true"
+      AUTO_CREATE_SCHEMA: "true"
+      CORS_ORIGINS: ${PUBLIC_ORIGIN:?Set PUBLIC_ORIGIN to the HTTPS application origin}
+      DEMO_FAILURES: "false"
+    volumes:
+      - app-data:/app/data
+      - uploads:/app/uploads
+    depends_on:
+      model-init:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 15s
+      timeout: 5s
+      retries: 10
+  ollama:
+    image: ollama/ollama:0.6.8
+    restart: unless-stopped
+    environment:
+      OLLAMA_NUM_PARALLEL: "1"
+      OLLAMA_MAX_LOADED_MODELS: "1"
+    volumes:
+      - models:/root/.ollama
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 10s
+      timeout: 5s
+      retries: 20
+  model-init:
+    image: ollama/ollama:0.6.8
+    environment:
+      OLLAMA_HOST: http://ollama:11434
+    entrypoint: ["ollama"]
+    command: ["pull", "qwen2.5:7b-instruct"]
+    depends_on:
+      ollama:
+        condition: service_healthy
+
+volumes:
+  certificates:
+  caddy-config:
+  app-data:
+  uploads:
+  models:

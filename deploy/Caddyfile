@@ -1,0 +1,6 @@
+{$DEMO_HOST} {
+    encode gzip
+    header X-Content-Type-Options nosniff
+    header Referrer-Policy same-origin
+    reverse_proxy edge:80
+}

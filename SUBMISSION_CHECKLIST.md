@@ -7,9 +7,9 @@ Selected route: **hosted prototype + source repository + one-page approach**. Th
 - [x] README covers the implemented tech stack, Docker/native setup, Ollama, configuration, workflow, tests and limitations.
 - [x] APPROACH.md explains the approach, independent decisions, escalation boundary and next steps (410 words).
 - [x] docs/APPROACH_ONE_PAGE.html provides the same text in an A4 print layout.
-- [ ] Verify final printed write-up fits one page.
+- [x] A4 write-up layout visually checked to fit one page.
 - [ ] Publish full source to the separate migrateflow-fde-assessment repository and verify access.
-- [ ] Add the real hosted application URL to README and verify it from a reviewer-accessible session.
+- [x] Hosted HTTPS URL added to README; browser upload, escalation correction, continuation, delivery and undo verified.
 - [ ] Walk through multi-file upload, uncertainty resolution in the UI, automatic continuation and delivery on the hosted application.
 - [ ] Ensure the evaluation panel can access both the prototype and repository.
 
@@ -31,3 +31,4 @@ The following are previous recorded checks, not tests rerun during the documenta
 - [ ] Record fresh hosted verification results without presenting local tests as hosted proof.
 
 DEMO_SCRIPT.md remains an optional live walkthrough guide. A recording applies if the submission switches back to the assignment's local-run route.
+

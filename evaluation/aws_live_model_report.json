@@ -1,0 +1,16 @@
+﻿{
+  "url": "https://demo-migrateflow.51-21-247-103.sslip.io",
+  "date": "2026-09-20",
+  "provider": "Ollama",
+  "model": "qwen2.5:7b-instruct",
+  "mode": "live",
+  "batch_id": "49622b2d-911d-447c-93e5-816d32e0d607",
+  "proposals": 7,
+  "records": 1,
+  "pushed": 1,
+  "rolled_back": 1,
+  "elapsed_seconds": 123.50,
+  "request_timeout_seconds": 180,
+  "initial_60_second_attempt": "failed: fallback, not live inference",
+  "limitations": "One synthetic smoke case; not a throughput or general accuracy benchmark."
+}

@@ -1,8 +1,8 @@
-# Account handoff — 20 September 2026
+﻿# Account handoff â€” 20 September 2026
 
 This file preserves the previous Codex session's implementation history and remaining work. Read the actual workspace before changing anything. Test results below are recorded results from that session, not a claim that checks were rerun when this handoff was written.
 
-Latest user decision: submit a hosted application URL, not a video. Do not treat recording as a blocker for this selected route. The README has been revised with full setup/stack instructions; APPROACH.md now contains a focused 410-word write-up, with an A4 print layout in docs/APPROACH_ONE_PAGE.html. Verify printed pagination before submission. The user authorized creating a separate repository; chosen name: migrateflow-fde-assessment. Preserve the existing origin repository. Live URL has not yet been supplied or verified.
+Latest user decision: submit a hosted application URL, not a video. Do not treat recording as a blocker for this selected route. The README has been revised with full setup/stack instructions; APPROACH.md now contains a focused 410-word write-up, with an A4 print layout in docs/APPROACH_ONE_PAGE.html. Verify printed pagination before submission. The user authorized creating a separate repository; chosen name: migrateflow-fde-assessment. Preserve the existing origin repository. Hosted URL is now https://demo-migrateflow.51-21-247-103.sslip.io. Read docs/AWS_DEPLOYMENT_STATUS.md and evaluation/aws_ui_report.json for the latest deployment state. The previous pending-deployment notes below are historical.
 
 ## User objective and assignment
 
@@ -65,7 +65,7 @@ Describe the system as a supervised, domain-specific migration agent with bounde
 - Frontend: ESLint passed; 13 tests across four files passed; TypeScript/Vite build passed.
 - Deterministic evaluation: six mapping cases, six date cases, three reconciliation cases passed measured checks. This small suite does not establish general accuracy.
 - Real HTTP supervised smoke: upload, mapping, validation, delivery and undo passed.
-- Three fallback single-record Autopilot runs: upload about 107–152 ms; completion about 0.85–1.10 seconds; writes undone. Not live-model latency or a load benchmark.
+- Three fallback single-record Autopilot runs: upload about 107â€“152 ms; completion about 0.85â€“1.10 seconds; writes undone. Not live-model latency or a load benchmark.
 - Live Ollama CPU smoke: seven proposals, six verified aliases and one actual model mapping (`start_date` -> `hire_date`); validation, one delivery and one undo passed in 39.70 seconds. Initial unbounded streaming attempt fell back; the final bounded non-streaming revision passed. 29 relevant mapping/workflow regressions and mapping type checks were rerun after that adjustment.
 - Docker images built; local API healthy and UI HTTP 200 at last check. Do not assume services are still running.
 - Browser walkthrough was not performed because the previous browser tool reported no available browser.
@@ -108,3 +108,4 @@ Production follow-ups, not assignment blockers: authentication/RBAC/tenant isola
 ## Prompt to paste into the next account
 
 > Continue my Darwinbox FDE migration-agent assessment in `C:\Users\sudha\Desktop\Darwinbox`. Read this handoff and current requirements/validation documents, inspect Git status and workspace instructions, and preserve existing edits. The user selected a hosted-link submission without video and authorized a separate repository named migrateflow-fde-assessment. Finish repository publication when authenticated, add and verify the hosted URL, check the one-page approach layout, and visually verify escalation/resumption. Clarify current versus proposed architecture in HLD/LLD. Do not rebuild from scratch, add unnecessary frameworks, claim unrun tests, expose secrets, or call the separate LangGraph contract the runtime orchestrator.
+

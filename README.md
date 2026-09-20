@@ -6,7 +6,7 @@ MigrateFlow combines inconsistent CSV and Excel exports into a validated employe
 
 ## Submission package
 
-This submission uses the **hosted prototype** route. Source: [migrateflow-fde-assessment](https://github.com/sudharshanreddyragipindi35-collab/migrateflow-fde-assessment). The live application URL is pending; localhost addresses below are development addresses, not hosted links. Repository access must be granted to reviewers while it is private.
+This submission uses the **hosted prototype** route. Open the [live MigrateFlow demo](https://demo-migrateflow.51-21-247-103.sslip.io). Source: [migrateflow-fde-assessment](https://github.com/sudharshanreddyragipindi35-collab/migrateflow-fde-assessment). Repository access must be granted to reviewers while it is private. Use synthetic employee data in this shared assessment environment.
 
 - **Working prototype:** hosted application, with the sample-data walkthrough below for reviewers.
 - **Source repository:** backend, frontend, tests, synthetic samples, configuration and setup instructions in this README.
@@ -34,6 +34,7 @@ This submission uses the **hosted prototype** route. Source: [migrateflow-fde-as
 | Integration/progress | HTTPX, FastAPI mock endpoints, Server-Sent Events | Target API calls and live events |
 | Quality | pytest, Ruff, mypy, Vitest, Testing Library, ESLint, TypeScript | Regression tests, lint, type checks and build checks |
 | Packaging | Docker, Docker Compose, Nginx, GitHub Actions configuration | Local deployment, frontend serving and CI checks |
+| Hosted demo | AWS EC2/EBS, Caddy with Let's Encrypt HTTPS, sslip.io DNS | Single-host frontend, backend and local Ollama deployment |
 
 Exact versions are in [backend/pyproject.toml](backend/pyproject.toml), [frontend/package.json](frontend/package.json) and the frontend lockfile.
 
@@ -99,6 +100,8 @@ docker compose -f docker-compose.yml -f docker-compose.assessment.yml down
 Named volumes retain the database and uploads after stopping. Do not remove volumes if you want to preserve migration history.
 
 ## Alternative: local development without Docker
+
+For the deployed AWS profile, architecture, operating commands and budget limits, see [AWS deployment notes](docs/AWS_DEPLOYMENT_STATUS.md). The commands above reproduce the local profile; the hosted profile uses `docker-compose.aws.yml`.
 
 Use Python **3.12 or 3.13**, Node.js **22**, npm and PowerShell. Install/start Ollama as above. From the repository root:
 
