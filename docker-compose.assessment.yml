@@ -1,0 +1,9 @@
+# CPU-friendly, open-source-only assessment profile.
+# docker compose -f docker-compose.yml -f docker-compose.assessment.yml up -d --build
+services:
+  backend:
+    environment:
+      MODEL_MODE: ollama
+      LLM_FAILOVER_PROVIDER: fallback
+      LLM_REQUEST_TIMEOUT_SECONDS: "60"
+      LLM_PARALLEL_WORKERS: "1"

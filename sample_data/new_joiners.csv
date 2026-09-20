@@ -1,0 +1,4 @@
+staff_id,given_name,family_name,email_address,phone_number,start_date,business_unit,worker_status,supervisor
+IN001,Asha,Rao,asha.rao@example.test,+91 98765 41001,2023-04-17,Engineering,Active,M001
+NJ101,Noah,Williams,retry.noah@example.test,+1 415 555 0101,2026-09-01,Sales,Active,M010
+NJ102,Mina,Patel,mina.patel@example.test,+44 20 7946 0958,01/09/2026,Support,Active,M011

@@ -1,0 +1,2 @@
+"""Typed workflow event stream."""
+

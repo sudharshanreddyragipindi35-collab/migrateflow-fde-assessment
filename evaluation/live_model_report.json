@@ -1,0 +1,21 @@
+{
+  "model": "qwen2.5:7b-instruct",
+  "provider": "Ollama",
+  "hardware": "CPU, zero GPU allocation observed",
+  "elapsed_seconds": 39.7,
+  "provider_counts": {
+    "verified_alias": 6,
+    "ollama": 1
+  },
+  "model_fields": [
+    {
+      "source": "start_date",
+      "target": "hire_date"
+    }
+  ],
+  "records_validated": 1,
+  "records_sent": 1,
+  "records_undone": 1,
+  "result": "PASS",
+  "scope": "Single-record live-model HTTP smoke; not a general accuracy or throughput benchmark"
+}

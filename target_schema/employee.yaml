@@ -1,0 +1,21 @@
+name: employee
+version: 1
+fields:
+  employee_id: {type: string, required: true}
+  first_name: {type: string, required: true}
+  last_name: {type: string, required: true}
+  email: {type: email, required: true}
+  phone: {type: string, required: false}
+  date_of_birth: {type: date, format: iso, required: false}
+  hire_date: {type: date, format: iso, required: true}
+  department:
+    type: enum
+    required: true
+    values: [Engineering, Finance, Human Resources, Operations, Sales, Support]
+  employment_status:
+    type: enum
+    required: true
+    values: [Active, Inactive, Leave, Terminated]
+  manager_id: {type: string, required: false}
+  source_system: {type: string, required: false}
+

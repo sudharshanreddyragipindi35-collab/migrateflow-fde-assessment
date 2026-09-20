@@ -1,0 +1,25 @@
+{
+  "scope": "three sequential single-record HTTP runs on this machine; includes queue polling",
+  "model_mode": "fallback",
+  "live_model_quality_measured": false,
+  "samples": [
+    {
+      "upload_response_ms": 120.93,
+      "autopilot_completion_ms": 845.74,
+      "sent_records": 1,
+      "undone_records": 1
+    },
+    {
+      "upload_response_ms": 106.75,
+      "autopilot_completion_ms": 1096.1,
+      "sent_records": 1,
+      "undone_records": 1
+    },
+    {
+      "upload_response_ms": 152.19,
+      "autopilot_completion_ms": 1035.32,
+      "sent_records": 1,
+      "undone_records": 1
+    }
+  ]
+}

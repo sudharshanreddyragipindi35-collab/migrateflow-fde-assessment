@@ -1,0 +1,57 @@
+[build-system]
+requires = ["hatchling>=1.25"]
+build-backend = "hatchling.build"
+
+[project]
+name = "migrateflow"
+version = "0.1.0"
+description = "Supervised employee data migration agent"
+requires-python = ">=3.12,<3.14"
+dependencies = [
+  "httpx==0.28.1",
+  "fastapi==0.115.6",
+  "uvicorn[standard]==0.32.1",
+  "pydantic==2.10.3",
+  "pydantic-settings==2.7.1",
+  "python-multipart==0.0.20",
+  "PyYAML==6.0.2",
+  "pandas==2.3.1",
+  "openpyxl==3.1.5",
+  "SQLAlchemy==2.0.36",
+  "langchain==0.3.26",
+  "langchain-ollama==0.3.10",
+  "langchain-anthropic==0.3.22",
+  "langgraph==0.6.11",
+  "langgraph-checkpoint-sqlite==3.0.3",
+  "psycopg[binary]==3.2.3",
+]
+
+[project.optional-dependencies]
+dev = [
+  "httpx==0.28.1",
+  "mypy==1.18.2",
+  "pytest==8.3.4",
+  "pytest-asyncio==0.24.0",
+  "ruff==0.13.2",
+]
+
+[tool.hatch.build.targets.wheel]
+packages = ["app"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["."]
+asyncio_default_fixture_loop_scope = "function"
+
+[tool.ruff]
+line-length = 100
+target-version = "py312"
+
+[tool.ruff.lint]
+select = ["E9", "F"]
+
+[tool.mypy]
+python_version = "3.12"
+plugins = ["pydantic.mypy"]
+strict = false
+ignore_missing_imports = true

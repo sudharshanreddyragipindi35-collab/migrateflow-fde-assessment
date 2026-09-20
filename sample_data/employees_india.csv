@@ -1,0 +1,5 @@
+Employee ID,First Name,Last Name,Work Email,Mobile,Joining Date,Department,Status,Manager ID
+IN001,Asha,Rao,asha.rao@example.test,+91 98765 41001,2023-04-17,Engineering,Active,M001
+IN002,Vikram,Shah,vikram.shah@example.test,+91 98765 41002,2022-11-03,Finance,Active,M002
+IN003,Meera,Iyer,meera.iyer@example.test,+91 98765 41003,2024-01-15,Human Resources,Leave,M001
+
